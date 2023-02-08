@@ -45,6 +45,8 @@ steps:
 images:
 - us-central1-docker.pkg.dev/${PROJECT_ID}/onlineboutique/adservice
 # Add more power for heavy Skaffold build
+options:
+  machineType: 'E2_HIGHCPU_32'
 # options:
 #   requestedVerifyOption: VERIFIED
 #   machineType: 'N1_HIGHCPU_8'
