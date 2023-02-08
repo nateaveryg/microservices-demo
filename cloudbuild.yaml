@@ -45,7 +45,7 @@ steps:
 
 # Add more power, and more time, for heavy Skaffold build
 options:
-  machineType: 'E2_HIGHCPU_32'
+  machineType: 'E2_HIGHCPU_16'
 
 # timeout: '3600s'
 # options:

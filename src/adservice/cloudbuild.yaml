@@ -37,7 +37,7 @@ steps:
   entrypoint: gcloud
   args:
     [
-      "deploy", "releases", "create", "rel-${_REL_ID}",
+      "deploy", "releases", "create", "rel-${SHORT_SHA}",
       "--delivery-pipeline", "adservice-boutique-pipeline",
       "--region", "us-central1",
       "--build-artifacts", "/workspace/artifacts.json"
@@ -46,7 +46,7 @@ images:
 - us-central1-docker.pkg.dev/${PROJECT_ID}/onlineboutique/adservice
 # Add more power for heavy Skaffold build
 options:
-  machineType: 'E2_HIGHCPU_32'
+  machineType: 'E2_HIGHCPU_8'
 # options:
 #   requestedVerifyOption: VERIFIED
 #   machineType: 'N1_HIGHCPU_8'
