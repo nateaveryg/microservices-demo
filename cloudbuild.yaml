@@ -12,32 +12,39 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START cloudbuild_microservice_demo_cloudbuild]
-
 # This configuration file is used to build and deploy the app into a
-# GKE cluster using Google Cloud Build.
+# GKE cluster using Google Cloud Build and Google Cloud Deploy.
 #
 # PREREQUISITES:
-# - Cloud Build service account must have role: "Kubernetes Engine Developer"
+# - Cloud Build service account must have roles:  "Cloud Deploy Releaser", "Service Account User"
+# - Compute service account must have roles: "Kubernetes Engine Developer", "Cloud Deploy Runner"
 
 # USAGE:
-# GCP zone and GKE target cluster must be specified as substitutions
+# The release ID must be incremented/unique for each run:
 # Example invocation:
-# `gcloud builds submit --config=cloudbuild.yaml --substitutions=_ZONE=us-central1-b,_CLUSTER=demo-app-staging .`
+# `gcloud builds submit --config=cloudbuild_cd.yaml --substitutions=_REL_ID=UNIQUE.`
+# where UNIQUE is different for each release
 
 steps:
-- id: 'Deploy application to cluster'
-  name: 'gcr.io/k8s-skaffold/skaffold:v0.20.0'
-  entrypoint: 'bash'
+- name: gcr.io/k8s-skaffold/skaffold
   args:
-  - '-c'
-  - >
-    gcloud container clusters get-credentials --zone=$_ZONE $_CLUSTER;
-    skaffold run -f=skaffold.yaml --default-repo=gcr.io/$PROJECT_ID;
+    - skaffold
+    - build
+    - '--interactive=false'
+    - '--file-output=/workspace/artifacts.json'
+    - '--default-repo=us-central1-docker.pkg.dev/${PROJECT_ID}/onlineboutique'
+- name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  entrypoint: gcloud
+  args:
+    [
+      "deploy", "releases", "create", "rel-${_REL_ID}",
+      "--delivery-pipeline", "boutique-pipeline",
+      "--region", "us-central1",
+      "--build-artifacts", "/workspace/artifacts.json"
+    ]
 
 # Add more power, and more time, for heavy Skaffold build
-# timeout: '3600s'
-# options:
-#  machineType: 'N1_HIGHCPU_8'
+timeout: '3600s'
+options:
+  machineType: 'N1_HIGHCPU_8'
   
-# [END cloudbuild_microservice_demo_cloudbuild]
