@@ -37,7 +37,7 @@ steps:
   entrypoint: gcloud
   args:
     [
-      "deploy", "releases", "create", "rel-${_REL_ID}",
+      "deploy", "releases", "create", "rel-${SHORT_SHA}",
       "--delivery-pipeline", "boutique-pipeline",
       "--region", "us-central1",
       "--build-artifacts", "/workspace/artifacts.json"
@@ -50,4 +50,4 @@ options:
 # timeout: '3600s'
 # options:
 #   machineType: 'N1_HIGHCPU_8'
-  
+# "deploy", "releases", "create", "rel-${_REL_ID}"  
