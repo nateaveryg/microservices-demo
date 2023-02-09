@@ -14,9 +14,9 @@
 
 apiVersion: apps/v1
 kind: Deployment
-namespace: onlineboutique
 metadata:
   name: redis-cart
+  namespace: onlineboutique
 spec:
   selector:
     matchLabels:
