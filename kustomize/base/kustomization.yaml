@@ -22,9 +22,10 @@ resources:
   - currencyservice.yaml
   - emailservice.yaml
   - frontend.yaml
-  - loadgenerator.yaml
   - paymentservice.yaml
   - productcatalogservice.yaml
   - recommendationservice.yaml
   - redis.yaml
   - shippingservice.yaml
+  - hpa.yaml
+#  - loadgenerator.yaml
