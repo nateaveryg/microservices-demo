@@ -116,4 +116,4 @@ uritemplate==3.0.1
     # via google-api-python-client
 urllib3==1.26.10
     # via requests
-index-url https://us-central1-python.pkg.dev/gartner-demo-376923/remote-python-repo/simple/
+index-url https://us-central1-python.pkg.dev/gartner-demo-376923/remote-python-repo/
