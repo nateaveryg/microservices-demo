@@ -21,6 +21,10 @@ RUN apt-get -qq update \
         g++ \
     && rm -rf /var/lib/apt/lists/*
 
+# add authentication to remote python registry
+RUN pip install keyring
+RUN pip install keyrings.google-artifactregistry-auth
+
 # get packages
 COPY requirements.txt .
 RUN pip install -r requirements.txt
