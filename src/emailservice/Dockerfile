@@ -23,14 +23,14 @@ RUN apt-get -qq update \
 
 # install gcloud cli
 # RUN apt-get install -y apt-transport-https ca-certificates gnupg 
-RUN apt install -y curl
-RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-RUN apt-get update && apt-get install -y google-cloud-cli
+# RUN apt install -y curl
+# RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+# RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+# RUN apt-get update && apt-get install -y google-cloud-cli
 
 # add authentication to remote python registry
-RUN pip install keyring
-RUN pip install keyrings.google-artifactregistry-auth
+# RUN pip install keyring
+# RUN pip install keyrings.google-artifactregistry-auth
 
 # get packages
 COPY requirements.txt .
