@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # FROM node:18-alpine as base
-FROM node:19-alpine as base
+FROM node:18-alpine3.17 as base
 
 FROM base as builder
 
