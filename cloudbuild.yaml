@@ -40,6 +40,7 @@ steps:
       "deploy", "releases", "create", "rel-${SHORT_SHA}",
       "--delivery-pipeline", "boutique-pipeline",
       "--region", "us-central1",
+      "--annotations", "commitId=${REVISION_ID}, gitlink=https://github.com/nateaveryg/microservices-demo/commit/${COMMIT_SHA}",
       "--build-artifacts", "/workspace/artifacts.json"
     ]
 
