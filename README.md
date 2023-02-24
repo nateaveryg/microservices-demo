@@ -203,4 +203,4 @@ If you would like to contribute features or fixes to this app, see the [Developm
 
 This is not an official Google project.
 
-most recent update Feb '23
+most recent update February '23
