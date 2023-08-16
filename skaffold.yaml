@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Note: This will work, however, it's not a recommended best practice.  Cloud Deploy is intended to be used 1:1 application to pipeline
+# Why?  The ability to use functions like rollback is an importand part of the decision.  Most customers expect to 
+# Rollback a single application.  It is not possible to control fetures like rollback or canary for a sinle app in the set.
+
 apiVersion: skaffold/v2beta18
 kind: Config
 metadata:
